@@ -1,15 +1,7 @@
-org 0x7c00
-
+org 0x0
 bits 16
 
 main:
-	xor ax, ax
-	mov ss, ax
-	mov ds, ax
-	mov es, ax
-
-	mov sp, 0x7c00
-
 	mov si, os_boot_msg
 	call print
 	hlt
@@ -38,7 +30,4 @@ done_print:
 	pop si
 	ret
 
-os_boot_msg: db "Hello, The OS has Booted", 0x0d, 0x0a, 0  ;
-
-times 510-($-$$) db 0  ; Fill up to 510 bytes with zeroes
-dw 0xaa55              ; Boot signature (must be at the end of sector)
+os_boot_msg: db "Hello from the kernel/main.asm, The OS has Booted", 0x0d, 0x0a, 0  ;
